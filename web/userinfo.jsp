@@ -26,6 +26,12 @@
     </table>
     <br>
     <table border="1">
+        <thead>
+            <tr>
+                <td>Subscription name</td>
+                <td>Date</td>
+            </tr>
+        </thead>
         <c:forEach items="${subscriptions}" var="subscription">
             <tr>
                 <td>${subscription.issue.name}</td>

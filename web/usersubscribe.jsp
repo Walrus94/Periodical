@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Choose subscriptions</title>
     <form action="/usersubscribeconfirm" method="get">
         <table id="issuesList" border="1">
             <c:forEach items="${issues}" var="issue">

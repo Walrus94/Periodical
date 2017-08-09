@@ -9,11 +9,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Homepage</title>
 </head>
 <body>
     <form action="/userhome">
         <table name="subscriptionsTable" border="1">
+            <thead>
+                <tr>
+                    <td>Subscription name</td>
+                    <td>Date</td>
+                </tr>
+            </thead>
             <c:forEach items="${subscriptions}" var="subscription" >
                 <tr>
                     <td>${subscription.issue.name}</td>
