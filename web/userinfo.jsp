@@ -28,8 +28,8 @@
     <table border="1">
         <thead>
             <tr>
-                <td>Subscription name</td>
-                <td>Date</td>
+                <th>Subscription name</th>
+                <th>Date</th>
             </tr>
         </thead>
         <c:forEach items="${subscriptions}" var="subscription">

@@ -13,9 +13,9 @@
 </head>
 <body>
         <table id="userstable" border="1" style="float: left">
-            <thead>
-                <tr>User list</tr>
-            </thead>
+            <tr>
+                <th>Users</th>
+            </tr>
             <c:forEach items="${users}" var="user">
                 <tr>
                     <td>${user.username}</td>
@@ -28,9 +28,9 @@
             </c:forEach>
         </table>
         <table id="issuestable" border=1" style="float: left">
-            <thead>
-                <tr>Issues list</tr>
-            </thead>
+            <tr>
+                <th>Issues list</th>
+            </tr>
             <c:forEach items="${issues}" var="issue">
                 <tr>
                     <td>${issue.name}</td>
