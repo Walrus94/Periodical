@@ -10,39 +10,41 @@
 <html>
 <head>
     <title>${user.username} info page</title>
-    <table border="1">
-        <tr>
-            <td>Username</td>
-            <td>${user.username}</td>
-        </tr>
-        <tr>
-            <td>First name</td>
-            <td>${user.firstName}</td>
-        </tr>
-        <tr>
-            <td>Last name</td>
-            <td>${user.lastName}</td>
-        </tr>
-    </table>
-    <br>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Magazine name</th>
-                <th>Subscription date</th>
-                <th>Expiration date</th>
-            </tr>
-        </thead>
-        <c:forEach items="${subscriptions}" var="subscription">
-            <tr>
-                <td>${subscription.issue.name}</td>
-                <td>${subscription.subscriptionDate}</td>
-                <td>${subscription.expirationDate}</td>
-            </tr>
-        </c:forEach>
-    </table>
 </head>
 <body>
-
+<table border="1">
+    <tr>
+        <td>Username</td>
+        <td>${user.username}</td>
+    </tr>
+    <tr>
+        <td>First name</td>
+        <td>${user.firstName}</td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td>${user.lastName}</td>
+    </tr>
+</table>
+<br>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Magazine name</th>
+        <th>Subscription date</th>
+        <th>Expiration date</th>
+    </tr>
+    </thead>
+    <c:forEach items="${subscriptions}" var="subscription">
+        <tr>
+            <td>${subscription.issue.name}</td>
+            <td>${subscription.subscriptionDate}</td>
+            <td>${subscription.expirationDate}</td>
+        </tr>
+    </c:forEach>
+</table>
+<form action="/login" method="post">
+    <input type="submit" value="Back">
+</form>
 </body>
 </html>

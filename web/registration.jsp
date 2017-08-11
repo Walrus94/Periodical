@@ -16,7 +16,10 @@
         First name:<input name="firstName"/><br/><br/>
         Last name:<input name="lastName"/><br/><br/>
         Password:<input name="password" type="password"/><br/><br/>
-        <input type="submit" value="register"/>
+        <input type="submit" value="Register"/>
+    </form>
+    <form action="index.jsp" method="post">
+        <input type="submit" value="Back">
     </form>
 </body>
 </html>

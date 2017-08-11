@@ -14,7 +14,7 @@
   <form action="/login" method="post">
       Name:<input name="username"/><br/><br/>
       Password:<input type="password" name="userpass"/><br/><br/>
-      <input type="submit" value="login"/>
+      <input type="submit" value="Login"/>
       <a href="/registration.jsp" >Registration</a>
   </form>
   </body>

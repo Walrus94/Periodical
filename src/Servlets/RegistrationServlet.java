@@ -26,7 +26,7 @@ public class RegistrationServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 response.setContentType("text/html");
                 out.println("<html><body onload=\"alert('User alredy exist')\"></body></html>");
-                response.sendRedirect("/registration.jsp");
+                request.getRequestDispatcher("/registration.jsp").include(request, response);
                 return;
             }
         }
@@ -41,7 +41,7 @@ public class RegistrationServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         out.println("<html><body onload=\"alert('User succesfully registred.')\"></body></html>");
-        response.sendRedirect("/index.jsp");
+        request.getRequestDispatcher("/index.jsp").include(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

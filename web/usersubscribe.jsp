@@ -15,7 +15,7 @@
 <form action="/usersubscribeconfirm" method="get">
     <table id="issuesList" border="1">
         <th>
-            <td>Choose subscriptions from list</td>
+        <td>Choose subscriptions from list</td>
         </th>
         <c:forEach items="${issues}" var="issue">
             <tr>
@@ -23,7 +23,7 @@
                 <td>${issue.name}</td>
                 <td>${issue.cost}</td>
                 <td>${issue.weeksPeriod} weeks</td>
-                <td><select name="subscriptionLength${issue.id}" >
+                <td><select name="subscriptionLength${issue.id}">
                     <option value="oneMonth">1 month</option>
                     <option value="threeMonths">3 months</option>
                     <option value="sixMonths">6 month</option>
@@ -34,6 +34,9 @@
     </table>
     <br>
     <input type="submit" value="Confirm">
+</form>
+<form action="/login" method="post">
+    <input type="submit" value="Back">
 </form>
 </body>
 </html>
