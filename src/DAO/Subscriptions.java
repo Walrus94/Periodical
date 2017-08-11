@@ -37,6 +37,7 @@ public class Subscriptions {
                 Subscription subscription = new Subscription();
                 subscription.setId(rs.getInt("id_payment"));
                 subscription.setSubscriptionDate(rs.getDate("payment_date"));
+                subscription.setExpirationDate(rs.getDate("expiration_date"));
 
                 User user = new User();
                 Integer userId = rs.getInt("user_id");
@@ -56,7 +57,8 @@ public class Subscriptions {
                 if(sRs.next()) {
                     issue.setId(sRs.getInt("id_issue"));
                     issue.setName(sRs.getString("name"));
-                    issue.setMonthlyCost(sRs.getDouble("cost"));
+                    issue.setCost(sRs.getDouble("cost"));
+                    issue.setWeeksPeriod(sRs.getInt("period"));
                     subscription.setIssue(issue);
                 }
                 subscriptions.add(subscription);
@@ -78,12 +80,14 @@ public class Subscriptions {
         try {
             statement = con.prepareStatement("periodical");
             for (Subscription s: newSubscriptions) {
-                StringBuilder query = new StringBuilder("INSERT INTO periodical.payments (user_id, payment_date, issue_id) VALUES ('");
+                StringBuilder query = new StringBuilder("INSERT INTO periodical.payments (user_id, payment_date, issue_id, expiration_date) VALUES ('");
                 query.append(s.getUser().getId());
                 query.append("', '");
                 query.append(new java.sql.Date(s.getSubscriptionDate().getTime()));
                 query.append("', '");
                 query.append(s.getIssue().getId());
+                query.append("', '");
+                query.append(new java.sql.Date(s.getExpirationDate().getTime()));
                 query.append("');");
                 statement.executeUpdate(query.toString());
             }

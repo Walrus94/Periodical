@@ -10,20 +10,30 @@
 <html>
 <head>
     <title>Choose subscriptions</title>
-    <form action="/usersubscribeconfirm" method="get">
-        <table id="issuesList" border="1">
-            <c:forEach items="${issues}" var="issue">
-                <tr>
-                    <td><input type="checkbox" name="selectedItems" value="${issue.id}"/></td>
-                    <td>${issue.name}</td>
-                    <td>${issue.monthlyCost}</td>
-                </tr>
-            </c:forEach>
-        </table>
-        <input type="submit" value="Confirm">
-    </form>
 </head>
 <body>
-
+<form action="/usersubscribeconfirm" method="get">
+    <table id="issuesList" border="1">
+        <th>
+            <td>Choose subscriptions from list</td>
+        </th>
+        <c:forEach items="${issues}" var="issue">
+            <tr>
+                <td><input type="checkbox" name="selectedItems" value="${issue.id}"/></td>
+                <td>${issue.name}</td>
+                <td>${issue.cost}</td>
+                <td>${issue.weeksPeriod} weeks</td>
+                <td><select name="subscriptionLength${issue.id}" >
+                    <option value="oneMonth">1 month</option>
+                    <option value="threeMonths">3 months</option>
+                    <option value="sixMonths">6 month</option>
+                    <option value="year">Year</option>
+                </select></td>
+            </tr>
+        </c:forEach>
+    </table>
+    <br>
+    <input type="submit" value="Confirm">
+</form>
 </body>
 </html>

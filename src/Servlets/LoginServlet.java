@@ -1,6 +1,5 @@
 package Servlets;
 
-import DAO.DBConnector;
 import DAO.Issues;
 import DAO.Subscriptions;
 import DAO.Users;
@@ -13,6 +12,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 @javax.servlet.annotation.WebServlet(name = "LoginServlet", urlPatterns = "/login")
@@ -30,6 +30,11 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                 if (u.getPassword().equals(request.getParameter("userpass"))) {
                     session.setAttribute("userName", request.getParameter("username"));
                     session.setAttribute("password", request.getParameter("userpass"));
+                    List<Subscription> subscriptions = Subscriptions.retrieveSubscriptions();
+                    for (Subscription s: subscriptions)
+                        if (s.getExpirationDate().before(new Date()))
+                            Subscriptions.removeSubscriptionById(s.getId());
+                    subscriptions.clear();
                     if (u.isAdmin()) {
                         logger.info("Administrator logged in");
                         List<Issue> issues = Issues.retrieveIssues();
@@ -40,8 +45,13 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         return;
                     } else {
                         logger.info("User logged in");
-                        List<Subscription> subscriptions = Subscriptions.retrieveSubscriptions();
+                        subscriptions = Subscriptions.retrieveSubscriptions();
                         subscriptions.removeIf(subscription -> !(subscription.getUser().getUsername().equals(session.getAttribute("userName"))));
+                        Double monthlyPayment = 0.0;
+                        for (Subscription s: subscriptions) {
+                            monthlyPayment += s.getIssue().getCost() * (4 / s.getIssue().getWeeksPeriod());
+                        }
+                        request.setAttribute("monthlyPayment", monthlyPayment);
                         request.setAttribute("subscriptions", subscriptions);
                         request.getRequestDispatcher("userhome.jsp").forward(request, response);
                         return;
@@ -52,5 +62,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         out.println("<html><body onload=\"alert('Incorrect user or password.')\"></body></html>");
+        response.sendRedirect("/index.jsp");
     }
 }

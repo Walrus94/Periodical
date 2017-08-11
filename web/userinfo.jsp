@@ -28,14 +28,16 @@
     <table border="1">
         <thead>
             <tr>
-                <th>Subscription name</th>
-                <th>Date</th>
+                <th>Magazine name</th>
+                <th>Subscription date</th>
+                <th>Expiration date</th>
             </tr>
         </thead>
         <c:forEach items="${subscriptions}" var="subscription">
             <tr>
                 <td>${subscription.issue.name}</td>
                 <td>${subscription.subscriptionDate}</td>
+                <td>${subscription.expirationDate}</td>
             </tr>
         </c:forEach>
     </table>

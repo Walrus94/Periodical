@@ -8,6 +8,7 @@ public class Subscription {
     private Date subscriptionDate;
     private Issue issue;
     private User user;
+    private Date expirationDate;
 
     public Integer getId() {
         return id;
@@ -39,5 +40,13 @@ public class Subscription {
 
     public Issue getIssue() {
         return issue;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 }

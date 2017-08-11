@@ -31,7 +31,8 @@ public class Issues {
                 Issue issue = new Issue();
                 issue.setId(rs.getInt("id_issue"));
                 issue.setName(rs.getString("name"));
-                issue.setMonthlyCost(rs.getDouble("cost"));
+                issue.setCost(rs.getDouble("cost"));
+                issue.setWeeksPeriod(rs.getInt("period"));
                 issues.add(issue);
             }
 
@@ -50,10 +51,12 @@ public class Issues {
 
         try {
             statement = con.prepareStatement("periodical");
-            StringBuilder query = new StringBuilder("INSERT INTO periodical.issues (name, cost) VALUES ('");
+            StringBuilder query = new StringBuilder("INSERT INTO periodical.issues (name, cost, period) VALUES ('");
             query.append(issue.getName());
             query.append("', '");
-            query.append(issue.getMonthlyCost());
+            query.append(issue.getCost());
+            query.append("', '");
+            query.append(issue.getWeeksPeriod());
             query.append("');");
             statement.executeUpdate(query.toString());
             con.close();

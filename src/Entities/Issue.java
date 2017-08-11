@@ -2,7 +2,8 @@ package Entities;
 
 public class Issue {
     private String name;
-    private double monthlyCost;
+    private Integer weeksPeriod;
+    private double cost;
     private Integer id;
 
     public Integer getId() {
@@ -17,16 +18,23 @@ public class Issue {
         this.name = name;
     }
 
-    public void setMonthlyCost(double monthlyCost) {
-        this.monthlyCost = monthlyCost;
-    }
-
     public String getName() {
         return name;
     }
 
-    public double getMonthlyCost() {
-        return monthlyCost;
+    public double getCost() {
+        return cost;
     }
 
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public Integer getWeeksPeriod() {
+        return weeksPeriod;
+    }
+
+    public void setWeeksPeriod(Integer weeksPeriod) {
+        this.weeksPeriod = weeksPeriod;
+    }
 }

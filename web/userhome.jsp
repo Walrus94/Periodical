@@ -16,12 +16,14 @@
         <table name="subscriptionsTable" border="1">
             <tr>
                 <th>Subscription name</th>
-                <th>Date</th>
+                <th>Subscription date</th>
+                <th>Expiration date</th>
             </tr>
             <c:forEach items="${subscriptions}" var="subscription" >
                 <tr>
                     <td>${subscription.issue.name}</td>
                     <td>${subscription.subscriptionDate}</td>
+                    <td>${subscription.expirationDate}</td>
                     <td>
                         <form action="/unsubscribe" method="post">
                             <input type="hidden" name="subscriptionid" value="${subscription.id}">
@@ -30,8 +32,13 @@
                     </td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td colspan="3">Payment per month:</td>
+                <td>${monthlyPayment}</td>
+            </tr>
         </table>
     </form>
+    <br>
     <form action="/usersubscribe" method="post">
         <input type="submit" value="Subscribe">
     </form>
